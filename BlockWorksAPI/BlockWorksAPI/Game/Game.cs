@@ -7,8 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BlockWorksAPI {
+	public delegate void OnMessageHandler(Game sender, IBlockWorksMessage e);
+
 	public partial class Game {
 		public event EventHandler Ready;
+		public event OnMessageHandler OnMessage;
 
 		private Connection con;
 		private Client cli;

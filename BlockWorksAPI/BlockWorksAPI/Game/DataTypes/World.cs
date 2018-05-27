@@ -17,9 +17,21 @@ namespace BlockWorksAPI {
 			Height = e.GetUInt(3);
 			IsCleared = e.GetBoolean(5);
 			
-			this.blocks = new Block[2, Width, Height];
+			this.Blocks = new Block[2, Width, Height];
 			channelsopen = new List<uint>();
 			uint specialPos = 0;
+
+			for (uint l = 0; l < 2; l++)
+				for (uint x = 0; x < Width; x++)
+					for (uint y = 0; y < Height; y++)
+						this.Blocks[l, x, y] = new Block() {
+							Layer = l,
+							X = x,
+							Y = y,
+							Arguments = null,
+							PlacedBy = -1,
+							uId = (uint)BlockId.Erase
+						};
 
 			//world deserialization
 			for (uint i = 6; i < e.Count; i++)
@@ -66,7 +78,7 @@ namespace BlockWorksAPI {
 
 							for (uint j = 0; j < iterations; j++)
 								if (xs[j] < Width && ys[j] < Height && layer < 2 && layer >= 0)
-									blocks[layer, xs[j], ys[j]] = new Block() { X = xs[j], Y = ys[j], Layer = layer, uId = blockid, PlacedBy = -1, Arguments = args };
+									Blocks[layer, xs[j], ys[j]] = new Block() { X = xs[j], Y = ys[j], Layer = layer, uId = blockid, PlacedBy = -1, Arguments = args };
 								else
 									Console.WriteLine(string.Format("invalid block: {0}, {1}, {2}, {3}", layer, blockid, xs[j], ys[j]));
 						}
@@ -100,11 +112,9 @@ namespace BlockWorksAPI {
 		}
 
 		private bool blocksArrayEdited = false;
-
-		private Block[, ,] _blocks;
+		
 		private Block[, ,] _blocksCache { get; set; }
-		internal Block[, ,] blocks { get { return _blocks; } set { _blocks = value; blocksArrayEdited = true; } }
 
-		public Block[, ,] Blocks { get { if (blocksArrayEdited) { Array.Copy(_blocks, _blocksCache, _blocks.Length); } return _blocksCache; } private set { } }
+		public Block[, ,] Blocks { get; set; }
 	}
 }

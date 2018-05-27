@@ -15,11 +15,6 @@ namespace BlockWorksAPI {
 				return ret;
 			}
 			public static bool VerifyMsg__TEST__(PlayerIOClient.Message e) {
-				Console.WriteLine(e.ToString());
-
-				for (uint i = 0; i < e.Count; i++)
-					Console.WriteLine(e[i].GetType().ToString());
-
 					switch (e.Type) {
 						case "world": {
 							if (e.Count > 9)

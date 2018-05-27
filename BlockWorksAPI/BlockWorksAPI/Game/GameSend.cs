@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BlockWorksAPI {
 	public partial class Game {
-		#region send
 		#region say
 		public void Say(string msg) {
 			Send("say", msg);
@@ -57,7 +56,6 @@ namespace BlockWorksAPI {
 		public void SetAvatar(AvatarColors color) {
 			SetAvatar(lastface, color);
 		}
-		#endregion
 		#endregion
 		#endregion
 	}

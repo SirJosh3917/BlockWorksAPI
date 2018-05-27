@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\DataTypes\Block.cs" />
+    <Compile Include="Game\DataTypes\BlockWorksMessage.cs" />
     <Compile Include="Game\DataTypes\ChatLog.cs" />
     <Compile Include="Game\DataTypes\Player.cs" />
     <Compile Include="Game\GameOnMessage.cs" />
